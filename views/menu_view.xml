@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <menuitem
+            id="dashboard_school_menu"
+            name="School" 
+            web_icon="training_odoo,static/img/odoo_icon.jpeg"
+            sequence="10"/>
+
+        <menuitem
+            id="master_teacher_menu"
+            name="Master Teacher"
+            action="master_teacher_action"
+            parent="dashboard_school_menu"
+            sequence="10"/>
+
+        <menuitem
+            id="master_student_menu"
+            name="Master Student"
+            action="master_student_action"
+            parent="dashboard_school_menu"
+            sequence="20"/>
+
+        <menuitem
+            id="master_class_menu"
+            name="Master Class"
+            action="master_class_action"
+            parent="dashboard_school_menu"
+            sequence="30"/>
+    
+    </data>
+    
+
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_master_teacher,master_teacher.master_teacher,model_master_teacher,base.group_user,1,1,1,1
+access_master_student,master_student.master_student,model_master_student,base.group_user,1,1,1,1
+access_master_class,master_class.master_class,model_master_class,base.group_user,1,1,1,1
+access_tmp_student,tmp_student.tmp_student,model_tmp_student,base.group_user,1,1,1,1
+
+

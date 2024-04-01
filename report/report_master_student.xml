@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_master_student_id" >
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+                    .judul{
+                        text-align: center;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="doc">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="top">
+                        <table style="border-collapse: collapse; width: 100%; height: 90px;">
+                            <tbody>
+                                <tr style="height: 18px; border-top: solid black 1px;border-bottom: solid black 1px;" >
+                                    <td style="width: 103.37%; text-align: center; height: 18px;" colspan="6"><h1 class="judul">Bukti Pembayaran</h1></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 16.6667%; height: 18px;">No Trans</td>
+                                    <td style="width: 2.14464%; height: 18px;">:</td>
+                                    <td style="width: 49.3873%; height: 18px;"><span t-field="doc.move_id.name" /></td>
+                                    <td style="width: 16.5441%; height: 18px;">NIS</td>
+                                    <td style="width: 1.96082%; height: 18px;">:</td>
+                                    <td style="width: 16.6667%; height: 18px;">-</td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 16.6667%; height: 18px;">Tanggal</td>
+                                    <td style="width: 2.14464%; height: 18px;">:</td>
+                                    <td style="width: 49.3873%; height: 18px;"><span t-field="doc.move_id.invoice_date" /></td>
+                                    <td style="width: 16.5441%; height: 18px;">Nama Siswa</td>
+                                    <td style="width: 1.96082%; height: 18px;">:</td>
+                                    <td style="width: 16.6667%; height: 18px;"><span t-field="doc.name" /></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 16.6667%; height: 18px;">Jam Cetak</td>
+                                    <td style="width: 2.14464%; height: 18px;">:</td>
+                                    <td style="width: 49.3873%; height: 18px;">-</td>
+                                    <td style="width: 16.5441%; height: 18px;">Kelas</td>
+                                    <td style="width: 1.96082%; height: 18px;">:</td>
+                                    <td style="width: 16.6667%; height: 18px;">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="container text-center">
+                            <div class="row border-top border-bottom border-2 border-dark ">
+                                <div class="col col-sm-2 col-md-2">
+                                    <p>No</p>
+                                </div>
+                                <div class="col col-sm-5 col-md-5">
+                                    <p>Keterangan Pembayaran</p>
+                                </div>
+                                <div class="col col-sm-5 col-md-5">
+                                    <p>Jumlah (Rp.)</p>
+                                </div>
+                            </div>
+                            <t t-set="no" t-value="1"/>     
+                                <t t-foreach="doc.move_id.invoice_line_ids" t-as="prod">
+                                    <div class="row border-bottom border-2 border-dark">
+                                        <div class="col col-sm-2 col-md-2"><t t-esc="no"/>.</div>
+                                        <div class="col col-sm-5 col-md-5"><t t-esc="prod.product_id.name"/></div>
+                                        <div class="col col-sm-5 col-md-5"><t t-esc="prod.price_subtotal"/></div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col col-sm-2 col-md-2"></div>
+                                        <div class="col col-sm-5 col-md-5 border-bottom border-2 border-dark"><p>Grand Total</p></div><td class="table"></td>
+                                        <div class="col col-sm-5 col-md-5 border-bottom border-2 border-dark"><t t-esc="doc.sum_move"/></div>
+                                    </div>
+                                    <t t-set="no" t-value="no + 1"/>
+                                </t>
+                        </div>
+                        <div class="row"></div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_master_student_report" model="report.paperformat">
+	    <field name="name">Master Student</field>
+	    <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">20.00</field>
+        <field name="margin_right">20.00</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">40</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report id="report_master_student_action_id"
+                string="Report Student"
+                model="master.student"
+                report_type="qweb-html"
+                file="training_odoo.report_master_student_id"
+                name="training_odoo.report_master_student_id"
+                print_report_name="'Invoice - %s' % (object.name)"
+                paperformat="paperformat_master_student_report"
+        />
+
+</odoo>

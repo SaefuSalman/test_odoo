@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="master_student_view_form" model="ir.ui.view">
+            <field name="name">master.student.view.form</field>
+            <field name="model">master.student</field>
+            <field name="arch" type="xml">
+                <form string="Master Student">
+                    <header>
+                        <button name="button_master_student_print" string="Print Report" type="object" attrs="{'invisible': [('flag_post_move', '=', False)]}"/>    
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <label for="active" string="Archive" />
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;:&quot;archive&quot;}" invisible="1" />
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" />
+                            <field name="gender" />
+                            <field name="tanggal_lahir" />
+                            <field name="partner_id" invisible="1"/>
+                            <field name="flag_post_move" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page name="move_line" string="Pembayaran">
+                                <group name="account_move">
+                                    <field name="move_id" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_student_view_tree" model="ir.ui.view">
+            <field name="name">master.student.view.tree</field>
+            <field name="model">master.student</field>
+            <field name="arch" type="xml">
+                <tree string="Master Student">
+                    <field name="name" />
+                    <field name="gender" />
+                    <field name="tanggal_lahir" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="master_student_action" model="ir.actions.act_window">
+            <field name="name">Master Student</field>
+            <field name="res_model">master.student</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <h1>Kosong</h1>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

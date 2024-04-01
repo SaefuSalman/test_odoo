@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="master_class_view_form" model="ir.ui.view">
+            <field name="name">master.class.view.form</field>
+            <field name="model">master.class</field>
+            <field name="arch" type="xml">
+                <form string="Master Class">
+                    <sheet>
+                        <div class="oe_left">
+                            <div class="oe_title" style="width: 390px;">
+                                <label class="oe_edit_only" for="name"/>
+                                <h1>
+                                    <field name="name" class="oe_inline"/>
+                                </h1>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page name="master_student" string="Student">
+                                <field name="tmp_student_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="student_id" />
+                                        <field name="gender" />
+                                        <field name="tanggal_lahir" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_class_view_tree" model="ir.ui.view">
+            <field name="name">master.class.view.tree</field>
+            <field name="model">master.class</field>
+            <field name="arch" type="xml">
+                <tree string="Master Class">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="master_class_action" model="ir.actions.act_window">
+            <field name="name">Master Class</field>
+            <field name="res_model">master.class</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <h1>Kosong</h1>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

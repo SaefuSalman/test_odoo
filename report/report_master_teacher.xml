@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_master_teacher_id" >
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+                    .top{
+                        margin-top: 100px;
+                    }
+                    .table{
+                        border: solid black 1px;
+                    }
+                    .table1{
+                        border: solid black 1px;
+                        width:10px;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="doc">
+                    <div class="top">
+                        <h1>Report Teacher</h1>
+                        <table style="width: 100%; height: 90px;" >
+                            <tbody>
+                                <tr style="height: 18px;">
+                                    <td style="width: 19.7146%; height: 18px;">Nama</td>
+                                    <td style="width: 4.15044%; height: 18px;">:</td>
+                                    <td style="height: 18px; width: 76.0701%;"><span t-field="doc.name" /></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 19.7146%; height: 18px;">Alamat</td>
+                                    <td style="width: 4.15044%; height: 18px;">:</td>
+                                    <td style="width: 76.0701%; height: 18px;"><span t-field="doc.alamat" /></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 19.7146%; height: 18px;">No.telp/hp</td>
+                                    <td style="width: 4.15044%; height: 18px;">:</td>
+                                    <td style="width: 76.0701%; height: 18px;"><span t-field="doc.no_telepon" /></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 19.7146%; height: 18px;">Status</td>
+                                    <td style="width: 4.15044%; height: 18px;">:</td>
+                                    <td style="width: 76.0701%; height: 18px;"><span t-field="doc.status" /></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 19.7146%; height: 18px;">Jabatan</td>
+                                    <td style="width: 4.15044%; height: 18px;">:</td>
+                                    <td style="width: 76.0701%; height: 18px;"><span t-field="doc.jabatan" /></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 19.7146%; height: 18px;">Pendidikan</td>
+                                    <td style="width: 4.15044%; height: 18px;">:</td>
+                                    <td style="width: 76.0701%; height: 18px;"><span t-field="doc.pendidikan" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="margin-bottom: 50px;" >
+                            <tbody>
+                                <thead>
+                                    <tr class="table">
+                                        <th class="table1">No</th>
+                                        <th class="table">Name</th>
+                                        <th class="table">Gender</th>
+                                        <th class="table">Tanggal Lahir</th>
+                                    </tr>
+                                </thead>
+                                <t t-set="no" t-value="1"/>
+                                <t t-foreach="doc.master_class_id.tmp_student_ids" t-as="student">
+                                    <tr class="table">
+                                        <td class="table1"><t t-esc="no"/>.</td>
+                                        <td class="table"><t t-esc="student.student_id.name"/></td>
+                                        <td class="table"><t t-esc="student.student_id.gender"/></td>
+                                        <td class="table"><t t-esc="student.student_id.tanggal_lahir"/></td>
+                                    </tr>
+                                    <t t-set="no" t-value="no + 1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report id="report_master_teacher_action_id"
+                string="Report Teacher"
+                model="master.teacher"
+                report_type="qweb-html"
+                file="training_odoo.report_master_teacher_id"
+                name="training_odoo.report_master_teacher_id"
+                menu="True"
+        />
+
+</odoo>
